@@ -1,0 +1,25 @@
+TestCaseId,TestCaseName,StepOrder,Keyword,PageObject,Element,Value,ExpectedResult,Description
+TC001,Successful login with standard user,1,NavigateTo,,/,,,Open the login page
+TC001,Successful login with standard user,2,EnterText,LoginPage,UsernameInput,standard_user,,Enter a valid username
+TC001,Successful login with standard user,3,EnterText,LoginPage,PasswordInput,secret_sauce,,Enter the matching password
+TC001,Successful login with standard user,4,Click,LoginPage,LoginButton,,,Submit the login form
+TC001,Successful login with standard user,5,AssertVisible,DashboardPage,InventoryList,,,Verify the inventory page loaded
+TC001,Successful login with standard user,6,AssertText,DashboardPage,PageTitle,,Products,Verify the page title says Products
+TC002,Login fails with wrong password,1,NavigateTo,,/,,,Open the login page
+TC002,Login fails with wrong password,2,EnterText,LoginPage,UsernameInput,standard_user,,Enter a valid username
+TC002,Login fails with wrong password,3,EnterText,LoginPage,PasswordInput,wrong_password,,Enter an incorrect password
+TC002,Login fails with wrong password,4,Click,LoginPage,LoginButton,,,Submit the login form
+TC002,Login fails with wrong password,5,AssertVisible,LoginPage,ErrorMessage,,,Verify an error message appears
+TC002,Login fails with wrong password,6,AssertText,LoginPage,ErrorMessage,,do not match,Verify the error explains the mismatch
+TC003,Login fails for locked out user,1,NavigateTo,,/,,,Open the login page
+TC003,Login fails for locked out user,2,EnterText,LoginPage,UsernameInput,locked_out_user,,Enter a username that is locked
+TC003,Login fails for locked out user,3,EnterText,LoginPage,PasswordInput,secret_sauce,,Enter the matching password
+TC003,Login fails for locked out user,4,Click,LoginPage,LoginButton,,,Submit the login form
+TC003,Login fails for locked out user,5,AssertText,LoginPage,ErrorMessage,,has been locked out,Verify the lockout message is shown
+TC004,Logout returns to login page,1,NavigateTo,,/,,,Open the login page
+TC004,Logout returns to login page,2,EnterText,LoginPage,UsernameInput,standard_user,,Enter a valid username
+TC004,Logout returns to login page,3,EnterText,LoginPage,PasswordInput,secret_sauce,,Enter the matching password
+TC004,Logout returns to login page,4,Click,LoginPage,LoginButton,,,Submit the login form
+TC004,Logout returns to login page,5,Click,DashboardPage,BurgerMenuButton,,,Open the side menu
+TC004,Logout returns to login page,6,Click,DashboardPage,LogoutLink,,,Click logout
+TC004,Logout returns to login page,7,AssertVisible,LoginPage,LoginButton,,,Verify we are back on the login page
